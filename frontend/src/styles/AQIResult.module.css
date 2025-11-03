@@ -1,0 +1,256 @@
+.resultContainer {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #e3f2fd, #f1f5f9);
+  padding: 3rem 1rem;
+  box-sizing: border-box;
+}
+
+/* Enlarged and centered card */
+.card {
+  background: #ffffff;
+  width: 95%;
+  max-width: 1200px;
+  border-radius: 20px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  animation: fadeIn 0.6s ease-in-out;
+  box-sizing: border-box;
+}
+
+/* ---------- TOP SECTION ---------- */
+.topSection {
+  text-align: center;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 25px;
+}
+
+.cityName {
+  font-size: 2.6rem;
+  color: #1e3a8a;
+  margin-bottom: 10px;
+}
+
+.aqiValue {
+  font-size: 1.8rem;
+  color: #334155;
+  font-weight: 600;
+}
+
+.aqiValue span {
+  color: #1d4ed8;
+}
+
+.category {
+  font-size: 1.4rem;
+  margin-top: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* AQI Status Colors */
+.good {
+  color: #16a34a;
+}
+.satisfactory {
+  color: #84cc16;
+}
+.moderate {
+  color: #eab308;
+}
+.poor {
+  color: #f97316;
+}
+.verypoor {
+  color: #dc2626;
+}
+.severe {
+  color: #7f1d1d;
+}
+
+/* ---------- POLLUTANT SECTION ---------- */
+.pollutantSection {
+  background: #f8fafc;
+  border-radius: 18px;
+  padding: 30px 35px;
+}
+
+.pollutantSection h2 {
+  text-align: center;
+  color: #1e3a8a;
+  margin-bottom: 20px;
+  font-size: 1.6rem;
+}
+
+.pollutantGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 20px;
+  justify-items: center;
+}
+
+.pollutantCard {
+  background: #ffffff;
+  border: 2px solid #e5e7eb;
+  border-radius: 18px;
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.pollutantCard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+
+.pollutantCard h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #2563eb;
+}
+
+.pollutantCard p {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.pollutantCard span {
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+/* ---------- MIDDLE SECTION ---------- */
+.middleSection {
+  background: #eff6ff;
+  padding: 35px;
+  border-radius: 18px;
+}
+
+.middleSection h2 {
+  color: #1e3a8a;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+.middleSection ul {
+  list-style-type: disc;
+  padding-left: 30px;
+  color: #334155;
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+/* ---------- BOTTOM SECTION ---------- */
+.bottomSection {
+  background: #fef9c3;
+  padding: 35px;
+  border-radius: 18px;
+}
+
+.bottomSection h2 {
+  color: #92400e;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+.bottomSection ul {
+  list-style-type: disc;
+  padding-left: 30px;
+  color: #374151;
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+/* ---------- BUTTON ---------- */
+.backButton {
+  display: block;
+  margin: 30px auto 0 auto;
+  padding: 12px 30px;
+  background: #2563eb;
+  border: none;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.backButton:hover {
+  background: #1e40af;
+  transform: scale(1.05);
+}
+
+/* ---------- ERROR CONTAINER ---------- */
+.errorContainer {
+  text-align: center;
+  padding: 60px;
+}
+
+.errorContainer h2 {
+  color: #dc2626;
+  margin-bottom: 12px;
+}
+
+.errorContainer p {
+  color: #475569;
+}
+
+/* ---------- ANIMATION ---------- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 768px) {
+  .card {
+    width: 100%;
+    padding: 25px;
+  }
+
+  .cityName {
+    font-size: 1.8rem;
+  }
+
+  .aqiValue {
+    font-size: 1.3rem;
+  }
+
+  .pollutantGrid {
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  }
+
+  .pollutantCard {
+    padding: 15px;
+  }
+
+  .pollutantCard h3 {
+    font-size: 1rem;
+  }
+
+  .pollutantCard p {
+    font-size: 1.1rem;
+  }
+
+  .middleSection,
+  .bottomSection {
+    padding: 20px;
+  }
+}

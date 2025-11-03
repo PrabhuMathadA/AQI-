@@ -1,0 +1,136 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 210.5vh;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.6)),
+    url("https://picjumbo.com/wp-content/uploads/morning-fog-pollution-and-smog-in-the-middle-of-the-city-free-image.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.card {
+  background: rgba(28, 28, 30, 0.85);
+  color: white;
+  width: 370px;
+  padding: 2.2rem;
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #a2e3f5;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.inputGroup label {
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+  color: #c5e6f0;
+}
+
+.inputGroup input {
+  padding: 0.6rem;
+  border: none;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.inputGroup input:focus {
+  border: 1px solid #00bcd4;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.passwordWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.passwordWrapper input {
+  width: 100%;
+  box-sizing: border-box;
+  padding-right: 2rem; /* ensures the eye icon doesn't overlap text */
+}
+
+
+.eyeIcon {
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  cursor: pointer;
+}
+
+.btn {
+  background: linear-gradient(90deg, #00bcd4, #4caf50);
+  color: white;
+  padding: 0.7rem;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background: linear-gradient(90deg, #26c6da, #81c784);
+  transform: translateY(-2px);
+}
+
+.registerText {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #c5e6f0;
+}
+
+.registerLink {
+  color: #00bcd4;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.registerLink:hover {
+  text-decoration: underline;
+}
+
+/* Forgot password styling */
+.forgotContainer {
+  text-align: right;
+  margin-top: -5px;
+  margin-bottom: 10px;
+}
+
+.forgotLink {
+  color: #1565c0;
+  font-weight: 500;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.forgotLink:hover {
+  text-decoration: underline;
+}
+
