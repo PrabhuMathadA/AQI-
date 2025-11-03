@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+sqlalchemy
+requests
+python-dotenv
+pydantic
+passlib[bcrypt]
+gunicorn
+
