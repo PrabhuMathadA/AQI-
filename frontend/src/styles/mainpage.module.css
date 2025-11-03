@@ -1,0 +1,232 @@
+/* 🌈 Global Container */
+.container {
+  font-family: "Poppins", sans-serif;
+  color: #222;
+  background-color: #ffffff;
+  overflow-x: hidden;
+}
+
+/* 🌤️ Hero Section */
+.hero {
+  height: 100vh;
+  background: linear-gradient(-45deg, #0078ff, #00c853, #0061ff, #00ff94);
+  background-size: 400% 400%;
+  animation: gradientFlow 10s ease infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heroGlass {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 50px 40px;
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  text-align: center;
+  max-width: 750px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 1.5s ease;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 800;
+  color: white;
+  text-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  color: #f2f2f2;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+/* 🌱 About Section */
+.about {
+  text-align: center;
+  padding: 100px 20px;
+  background: #f7faff;
+}
+
+.about h2 {
+  font-size: 2rem;
+  color: #0078ff;
+  margin-bottom: 20px;
+}
+
+.about p {
+  max-width: 800px;
+  margin: 10px auto;
+  font-size: 1.05rem;
+  color: #555;
+  line-height: 1.8;
+}
+
+/* 💨 Features Section */
+.features {
+  text-align: center;
+  padding: 100px 20px;
+  background: linear-gradient(180deg, #ffffff, #e9f7ff);
+}
+
+.features h2 {
+  font-size: 2rem;
+  color: #0078ff;
+  margin-bottom: 50px;
+  font-weight: 700;
+}
+
+.featureGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 35px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.featureCard {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 40px 25px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transition: all 0.4s ease;
+  position: relative;
+}
+
+.featureCard:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(0, 120, 255, 0.3);
+}
+
+.icon {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 15px;
+  background: linear-gradient(90deg, #0078ff, #00c853);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.featureCard h3 {
+  color: #004c91;
+  font-size: 1.25rem;
+  margin-bottom: 8px;
+}
+
+.featureCard p {
+  color: #333;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* 🔹 Action Section */
+.action {
+  text-align: center;
+  padding: 100px 20px;
+  background: linear-gradient(to right, #0078ff, #00c853);
+  color: white;
+}
+
+.action h2 {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.action p {
+  font-size: 1.1rem;
+  margin-bottom: 35px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.loginBtn,
+.registerBtn {
+  padding: 14px 36px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  background: white;
+  color: #0078ff;
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
+}
+
+.registerBtn {
+  color: #00c853;
+}
+
+.loginBtn:hover {
+  background: #0078ff;
+  color: white;
+  box-shadow: 0 0 25px rgba(0, 120, 255, 0.7);
+  transform: scale(1.05);
+}
+
+.registerBtn:hover {
+  background: #00c853;
+  color: white;
+  box-shadow: 0 0 25px rgba(0, 200, 83, 0.7);
+  transform: scale(1.05);
+}
+
+/* 🌇 Footer */
+.footer {
+  background: #0d1117;
+  color: #bbb;
+  text-align: center;
+  padding: 25px 10px;
+  font-size: 0.95rem;
+}
+
+/* ✨ Animations */
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 📱 Responsive */
+@media (max-width: 700px) {
+  .title {
+    font-size: 2.2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .about h2,
+  .features h2,
+  .action h2 {
+    font-size: 1.6rem;
+  }
+}

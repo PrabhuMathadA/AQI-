@@ -7,6 +7,10 @@ const Dashboard = () => {
   const [city, setCity] = useState("");
   const navigate = useNavigate();
 
+  const handleLogout = () => {
+    navigate("/"); // change this route if your login page differs
+  };
+
   const handleSearch = async (e) => {
     e.preventDefault();
 
@@ -16,7 +20,6 @@ const Dashboard = () => {
     }
 
     try {
-      // ✅ Add trailing slash to match FastAPI route
       const res = await fetch(`http://127.0.0.1:8000/aqi/?city=${city}`);
       if (!res.ok) {
         throw new Error(`Failed to fetch AQI for ${city}`);
@@ -25,7 +28,6 @@ const Dashboard = () => {
       const data = await res.json();
       console.log("✅ AQI API Response:", data);
 
-      // ✅ Pass all relevant data to AQIResult
       navigate("/result", {
         state: {
           city: data.city,
@@ -42,6 +44,24 @@ const Dashboard = () => {
 
   return (
     <div className={styles.container}>
+      {/* 🔹 Logout button on top-right */}
+      <button
+        onClick={handleLogout}
+        style={{
+          position: "absolute",
+          top: "20px",
+          right: "20px",
+          backgroundColor: "#ff4d4f",
+          color: "white",
+          border: "none",
+          padding: "8px 16px",
+          borderRadius: "5px",
+          cursor: "pointer",
+        }}
+      >
+        Logout
+      </button>
+
       <div className={styles.wrapper}>
         <h1 className={styles.title}>Air Quality Index Dashboard</h1>
 

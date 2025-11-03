@@ -5,7 +5,7 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import AQIResult from "./pages/AQIResult";
 import ForgotPassword from "./pages/ForgotPassword";
-
+import MainPage from "./pages/mainpage";
 
 
 
@@ -14,7 +14,8 @@ function App() {
     <div style={{ width: "100%", minHeight: "100vh" }}>
       <Router>
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<MainPage />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/result" element={<AQIResult />} />
