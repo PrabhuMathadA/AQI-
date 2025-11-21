@@ -21,3 +21,11 @@ app.include_router(aqi_router, prefix="/aqi", tags=["AQI Data"])
 @app.get("/")
 def home():
     return {"message": "AQI Backend Running ✅"}
+
+@app.get("/test-env")
+def test_env():
+    import os
+    return {
+        "waqi": os.getenv("WAQI_TOKEN"),
+        "ow": os.getenv("OPENWEATHER_API_KEY")
+    }
