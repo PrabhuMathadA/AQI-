@@ -254,3 +254,30 @@
     padding: 20px;
   }
 }
+
+/* ---------- NEW AQI STATUS COLORS (UPDATED BASED ON NEW SCALE) ---------- */
+
+.good {
+  color: #16a34a; /* green */
+}
+
+.moderate {
+  color: #eab308; /* yellow */
+}
+
+.unhealthy-for-sensitive-groups {
+  color: #f97316 !important; /* strong orange */
+}
+
+.unhealthy {
+  color: #dc2626; /* red */
+}
+
+.very-unhealthy {
+  color: #7c3aed; /* purple */
+}
+
+.hazardous {
+  color: #7f1d1d; /* maroon/dark red */
+}
+

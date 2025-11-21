@@ -186,3 +186,217 @@
     max-width: 100%;
   }
 }
+
+/* ---------------- ULTRA-PREMIUM ORB + PARTICLE LOADER ---------------- */
+
+.ultraLoaderWrap {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, rgba(250,250,255,1) 0%, rgba(245,249,255,1) 100%);
+  gap: 22px;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+/* orb container */
+.orbContainer {
+  position: relative;
+  width: 260px;
+  height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0 10px 40px rgba(79,141,253,0.18));
+}
+
+/* SVG orb */
+.orb {
+  width: 220px;
+  height: 220px;
+  transform-style: preserve-3d;
+  will-change: transform;
+  animation: slowTilt 6s ease-in-out infinite;
+}
+
+/* tilt movement */
+@keyframes slowTilt {
+  0% { transform: rotateX(8deg) rotateY(-10deg) rotateZ(0deg); }
+  50% { transform: rotateX(6deg) rotateY(10deg) rotateZ(6deg); }
+  100% { transform: rotateX(8deg) rotateY(-10deg) rotateZ(0deg); }
+}
+
+/* rings rotate independently */
+.rings {
+  transform-origin: 100px 100px;
+  animation: rotateRings 8s linear infinite;
+}
+
+@keyframes rotateRings {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* subtle sparkle twinkle */
+.sparkles circle { 
+  transform-origin: center; 
+  animation: sparkle 2.8s linear infinite;
+}
+
+@keyframes sparkle {
+  0% { opacity: 0.2; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+  100% { opacity: 0.2; transform: scale(0.8); }
+}
+
+/* orbiting rings via CSS elements */
+.orbitRings {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  top: 5px;
+  left: 5px;
+  pointer-events: none;
+}
+
+/* ring base */
+.ringA, .ringB {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  box-sizing: border-box;
+}
+
+/* big ring */
+.ringA {
+  width: 220px;
+  height: 220px;
+  border-left: 4px solid rgba(79,141,253,0.9);
+  border-top: 4px solid rgba(125,233,255,0.8);
+  opacity: 0.9;
+  animation: spinA 5.6s linear infinite;
+  filter: blur(3px) drop-shadow(0 6px 14px rgba(79,141,253,0.12));
+}
+
+/* smaller ring */
+.ringB {
+  width: 170px;
+  height: 170px;
+  border-right: 3px solid rgba(80,220,198,0.85);
+  border-bottom: 3px solid rgba(134,100,255,0.7);
+  opacity: 0.95;
+  animation: spinB 8.4s linear infinite reverse;
+  filter: blur(2px);
+}
+
+/* center glow */
+.centerGlow {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(79,141,253,0.15));
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 6px 30px rgba(79,141,253,0.22), inset 0 1px 6px rgba(255,255,255,0.6);
+  animation: pulseCenter 2.8s ease-in-out infinite;
+}
+
+@keyframes spinA {
+  0% { transform: translate(-50%,-50%) rotate(0deg); }
+  100% { transform: translate(-50%,-50%) rotate(360deg); }
+}
+@keyframes spinB {
+  0% { transform: translate(-50%,-50%) rotate(0deg); }
+  100% { transform: translate(-50%,-50%) rotate(360deg); }
+}
+@keyframes pulseCenter {
+  0% { transform: translate(-50%,-50%) scale(0.96); box-shadow: 0 6px 30px rgba(79,141,253,0.18); }
+  50% { transform: translate(-50%,-50%) scale(1.06); box-shadow: 0 14px 40px rgba(79,141,253,0.26); }
+  100% { transform: translate(-50%,-50%) scale(0.96); box-shadow: 0 6px 30px rgba(79,141,253,0.18); }
+}
+
+/* floating particles container & particles */
+.particles {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  top: -30px;
+  left: -30px;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.particle {
+  position: absolute;
+  bottom: 20px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, rgba(255,255,255,0.9), rgba(120,200,255,0.85));
+  opacity: 0.0;
+  filter: blur(0.6px);
+  transform: translate3d(0,0,0);
+  animation: floatUp 3.6s cubic-bezier(.2,.9,.3,1) infinite;
+}
+
+/* position each particle randomly by nth-child offsets */
+.particle:nth-child(1){ left:12%; animation-delay: 0s; width:5px; height:5px; opacity:0.9 }
+.particle:nth-child(2){ left:22%; animation-delay: .18s; width:6px; height:6px; opacity:0.85 }
+.particle:nth-child(3){ left:30%; animation-delay: .34s; width:7px; height:7px; opacity:0.8 }
+.particle:nth-child(4){ left:40%; animation-delay: .52s; width:4px; height:4px; opacity:0.75 }
+.particle:nth-child(5){ left:50%; animation-delay: .68s; width:6px; height:6px; opacity:0.85 }
+.particle:nth-child(6){ left:60%; animation-delay: .84s; width:5px; height:5px; opacity:0.78 }
+.particle:nth-child(7){ left:70%; animation-delay: 1.02s; width:6px; height:6px; opacity:0.9 }
+.particle:nth-child(8){ left:80%; animation-delay: 1.18s; width:8px; height:8px; opacity:0.72 }
+.particle:nth-child(9){ left:88%; animation-delay: 1.34s; width:5px; height:5px; opacity:0.86 }
+.particle:nth-child(10){ left:18%; animation-delay: 1.5s; width:6px; height:6px; opacity:0.7 }
+.particle:nth-child(11){ left:42%; animation-delay: 1.66s; width:7px; height:7px; opacity:0.78 }
+.particle:nth-child(12){ left:58%; animation-delay: 1.84s; width:5px; height:5px; opacity:0.8 }
+.particle:nth-child(13){ left:72%; animation-delay: 2.02s; width:6px; height:6px; opacity:0.74 }
+.particle:nth-child(14){ left:90%; animation-delay: 2.2s; width:6px; height:6px; opacity:0.68 }
+
+@keyframes floatUp {
+  0% { transform: translateY(0) translateX(0) scale(0.9); opacity: 0.0; }
+  10% { opacity: 0.6; }
+  50% { transform: translateY(-90px) translateX(6px) scale(1.05); opacity: 0.95; }
+  90% { opacity: 0.3; }
+  100% { transform: translateY(-160px) translateX(-4px) scale(0.8); opacity: 0; }
+}
+
+/* loader text */
+.loaderTextWrap {
+  text-align: center;
+  max-width: 420px;
+}
+.loaderTitle {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #0a1b2b;
+}
+.loaderSubtitle {
+  margin: 6px 0 0;
+  font-size: 14px;
+  color: #556b7a;
+}
+
+/* responsiveness */
+@media (max-width: 480px) {
+  .orbContainer { width: 190px; height: 190px; }
+  .orb { width: 160px; height: 160px; }
+  .particles { width: 220px; height: 220px; top: -10px; left: -10px; }
+  .loaderTitle { font-size: 18px; }
+  .loaderSubtitle { font-size: 13px; }
+}
+
+/* reduce motion support */
+@media (prefers-reduced-motion: reduce) {
+  .orb, .rings, .ringA, .ringB, .particle { animation: none !important; transform: none !important; }
+}

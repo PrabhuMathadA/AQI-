@@ -3,3 +3,4 @@ npm install bootstrap
 npm install axios
  to run 
  npm run dev
+ venv\Scripts\activate

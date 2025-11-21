@@ -6,27 +6,36 @@ const AQIResult = () => {
   const { state } = useLocation();
   const navigate = useNavigate();
 
-  // 🔹 Handle missing state (user refreshed or navigated directly)
+  // 🔹 Handle missing state (user refreshed or opened page directly)
   if (!state) {
     return (
       <div className={styles.errorContainer}>
         <h2>⚠️ No AQI data found</h2>
         <p>Please go back and search for a city again.</p>
-        <button onClick={() => navigate("/dashboard")} className={styles.backButton}>
+        <button
+          onClick={() => navigate("/dashboard")}
+          className={styles.backButton}
+        >
           ← Back to Dashboard
         </button>
       </div>
     );
   }
 
-  // 🔹 Safely destructure state with fallbacks
-  const { city = "Unknown", aqi = "-", status = "Unknown", components = {} } = state;
+  // 🔹 Correct destructuring — use pollutants instead of components
+  const {
+    city = "Unknown",
+    aqi = "-",
+    status = "Unknown",
+    pollutants = {},
+  } = state;
 
-  // 🔹 Determine color safely
+  // 🔹 Determine AQI category color
   const statusClass =
-    status && typeof status === "string"
-      ? styles[status.toLowerCase().replace(/\s+/g, "")]
-      : "";
+  status && typeof status === "string"
+    ? styles[status.toLowerCase().replace(/\s+/g, "-")]
+    : "";
+
 
   // 🔹 Health messages
   let problems = [];
@@ -34,48 +43,93 @@ const AQIResult = () => {
 
   if (aqi <= 50) {
     problems = [
+      "No health risks.",
       "Air quality is clean and fresh.",
-      "No known health risks.",
       "Ideal for outdoor activities.",
       "No irritation to eyes or throat.",
-      "Safe for children and elderly people."
+      "Perfect visibility outdoors.",
     ];
     precautions = [
-      "Enjoy outdoor workouts and walks.",
+      "Enjoy outdoor activities.",
       "Keep windows open for ventilation.",
-      "Maintain indoor air circulation.",
-      "Continue eco-friendly habits.",
-      "Stay hydrated and maintain greenery."
+      "Maintain greenery around home.",
+      "Stay hydrated and healthy.",
+      "Continue normal lifestyle.",
+    ];
+  } else if (aqi <= 100) {
+    problems = [
+      "Mild irritation for sensitive people.",
+      "Slight breathing discomfort during heavy exercise.",
+      "Dust may affect asthma patients.",
+      "Minor throat dryness.",
+      "Slight fatigue for elders.",
+    ];
+    precautions = [
+      "Sensitive individuals reduce heavy outdoor activity.",
+      "Avoid exercising near traffic.",
+      "Maintain indoor ventilation.",
+      "Drink more water.",
+      "Monitor AQI if you have asthma.",
     ];
   } else if (aqi <= 150) {
     problems = [
-      "Slight irritation to sensitive groups.",
-      "Possible mild coughing or throat dryness.",
-      "Asthmatics may feel mild discomfort.",
-      "Slight decrease in outdoor visibility.",
-      "Sensitive children or elders may feel tired easily."
+      "Asthmatics may face difficulty breathing.",
+      "Children may develop mild cough.",
+      "Elders may feel chest tightness.",
+      "Outdoor air feels slightly polluted.",
+      "Eye and nose irritation for sensitive people.",
     ];
     precautions = [
-      "Limit extended outdoor exposure.",
-      "Avoid heavy outdoor exercise during peak hours.",
-      "Keep windows closed in early morning and evening.",
-      "Use air purifiers indoors if possible.",
-      "Monitor local AQI regularly."
+      "Limit outdoor activity.",
+      "Wear a mask if needed.",
+      "Avoid peak pollution hours.",
+      "Keep asthma medication handy.",
+      "Use indoor plants for purification.",
+    ];
+  } else if (aqi <= 200) {
+    problems = [
+      "Breathing discomfort for everyone.",
+      "Noticeable throat irritation.",
+      "Mild headaches may occur.",
+      "Increased cough for asthma patients.",
+      "Decrease in outdoor visibility.",
+    ];
+    precautions = [
+      "Avoid outdoor exercise.",
+      "Wear N95 mask outside.",
+      "Close windows during peak hours.",
+      "Use indoor air purifier.",
+      "Drink warm water to reduce irritation.",
+    ];
+  } else if (aqi <= 300) {
+    problems = [
+      "Significant breathing issues.",
+      "Eye burning and throat irritation.",
+      "Chest tightness during normal activity.",
+      "High risk for children and elders.",
+      "Pollution may trigger respiratory issues.",
+    ];
+    precautions = [
+      "Stay indoors as much as possible.",
+      "Wear N95/N99 mask outdoors.",
+      "Improve indoor air filtration.",
+      "Avoid walking near roads.",
+      "Follow government health advisories.",
     ];
   } else {
     problems = [
-      "Increased risk of respiratory illness.",
-      "Eye, nose, and throat irritation.",
-      "Difficulty in breathing during exertion.",
-      "People with asthma may have severe reactions.",
-      "Fatigue and headaches due to poor oxygen levels."
+      "Severe risk of respiratory illness.",
+      "Inflammation of eyes, nose, and lungs.",
+      "Chest pain during exertion.",
+      "Dangerous for pregnant women.",
+      "Emergency-level pollution exposure.",
     ];
     precautions = [
-      "Avoid outdoor activities and wear N95 masks if necessary.",
-      "Use air purifiers or stay indoors in filtered air.",
-      "Close windows and doors to block polluted air.",
-      "Drink more water to flush out toxins.",
-      "Consult doctors if coughing or irritation persists."
+      "Avoid going outdoors completely.",
+      "Keep all windows and doors closed.",
+      "Use HEPA air purifier.",
+      "Wear N99 mask if going outside.",
+      "Seek medical help if symptoms worsen.",
     ];
   }
 
@@ -91,12 +145,12 @@ const AQIResult = () => {
           <p className={`${styles.category} ${statusClass}`}>{status}</p>
         </div>
 
-        {/* Pollutant Details */}
+        {/* Pollutant Section */}
         <div className={styles.pollutantSection}>
           <h2>🌫️ Pollutant Concentrations</h2>
           <div className={styles.pollutantGrid}>
-            {components && Object.keys(components).length > 0 ? (
-              Object.entries(components).map(([key, value]) => (
+            {pollutants && Object.keys(pollutants).length > 0 ? (
+              Object.entries(pollutants).map(([key, value]) => (
                 <div key={key} className={styles.pollutantCard}>
                   <h3>{key.toUpperCase()}</h3>
                   <p>{value}</p>
@@ -127,7 +181,10 @@ const AQIResult = () => {
               <li key={i}>{p}</li>
             ))}
           </ul>
-          <button onClick={() => navigate("/dashboard")} className={styles.backButton}>
+          <button
+            onClick={() => navigate("/dashboard")}
+            className={styles.backButton}
+          >
             ← Back to Dashboard
           </button>
         </div>
